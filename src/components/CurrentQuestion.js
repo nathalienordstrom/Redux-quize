@@ -5,10 +5,10 @@ import { NextButton, AnswerButton } from './Button'
 
 
 export const CurrentQuestion = () => {
+  const quizOver = useSelector((state) => state.quiz.quizOver)
   const dispatch = useDispatch()
   const question = useSelector((state) => state.quiz.questions[state.quiz.currentQuestionIndex])
-  const answer = useSelector((state) => state.quiz.answers.find((a) => ( a.questionId === question.id // question could come from the previous selector in the last example
-    )))
+  
   if (!question) {
     return <h1>Oh no! I could not find the current question!</h1>
   }
@@ -21,8 +21,9 @@ export const CurrentQuestion = () => {
       {/* Use map to display the answers. */}
       { question.options.map(
         (option, index) => 
-        <AnswerButton 
-        background={answer. ? 'green' : 'red'}
+        <AnswerButton id={`${question.id}${index}`}
+
+        background={(index === question.correctAnswerIndex) ? 'green' :  'red'}
         key={index}
         onClick={(() => 
           dispatch(quiz.actions.submitAnswer(
@@ -33,11 +34,26 @@ export const CurrentQuestion = () => {
         )))}>{option}
         </AnswerButton>
       )}
+      { !quizOver && (
+          <NextButton className='correct-answer' onClick={(() => {
+            dispatch(quiz.actions.goToNextQuestion())
+            document.getElementById(`${question.id}${index}`).classList.remove("green")
+
+          })}
+            >Next
+        </NextButton>
+      )
+       }
+
+      { quizOver && (
+        <NextButton className='correct-answer' onClick={(() => 
+          dispatch(quiz.actions.goToNextQuestion()))}>
+          Next
+        </NextButton>
+      )
+}
+
       
-      <NextButton className='correct-answer' onClick={(() => 
-      dispatch(quiz.actions.goToNextQuestion()))}>
-        Next
-      </NextButton>
       {/* // Dispatch the action that increments the index.
       // Dispatch the action from the reducer.
       // In the devtools, you can see all actions that's dispatched. */}

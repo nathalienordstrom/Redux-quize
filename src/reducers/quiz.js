@@ -47,6 +47,19 @@ export const quiz = createSlice({
       const { questionId, answerIndex } = action.payload
       const question = state.questions.find((q) => q.id === questionId)
       console.log(answerIndex)
+      console.log(question.correctAnswerIndex)
+      
+      document.getElementById(`${questionId}${answerIndex}`).classList.remove("green")
+
+
+      if (question.correctAnswerIndex === answerIndex) {
+        console.log("Correct answer!")
+        document.getElementById(`${questionId}${answerIndex}`).className = "green"
+      } else {
+        console.log("Wrong answer :(")
+      }
+
+
 
       if (!question) {
         throw new Error('Could not find question! Check to make sure you are passing the question id correctly.')
