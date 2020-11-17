@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { quiz } from 'reducers/quiz'
+import { NextButton } from './Button'
 
 export const CurrentQuestion = () => {
   const dispatch = useDispatch()
@@ -16,15 +17,21 @@ export const CurrentQuestion = () => {
       {/* Here we need to add the question options */}
       {/* Use map to display the answers. */}
       { question.options.map(
-        option => <button onClick={(() => 
+        (option, index) => 
+        <button 
+        key={index}
+        onClick={(() => 
           dispatch(quiz.actions.submitAnswer(
           { 
-            questionId: question.currentQuestionIndex, 
-            answerIndex: question.options.indexOf(option)
+            questionId: question.id, 
+            answerIndex: index
           }
         )))}>{option}</button>
       )}
-
+      <NextButton className='correct-answer' onClick={(() => 
+      dispatch(quiz.actions.goToNextQuestion()))}>
+        Next
+      </NextButton>
       {/* // Dispatch the action that increments the index.
       // Dispatch the action from the reducer.
       // In the devtools, you can see all actions that's dispatched. */}

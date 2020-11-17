@@ -46,7 +46,7 @@ export const quiz = createSlice({
     submitAnswer: (state, action) => {
       const { questionId, answerIndex } = action.payload
       const question = state.questions.find((q) => q.id === questionId)
-      console.log("We're in the submitAnswer function")
+      console.log(answerIndex)
 
       if (!question) {
         throw new Error('Could not find question! Check to make sure you are passing the question id correctly.')
