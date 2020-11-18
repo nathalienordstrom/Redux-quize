@@ -24,6 +24,8 @@ const initialState = {
   quizOver: false
 }
 
+
+
 export const quiz = createSlice({
   name: 'quiz',
   initialState,
@@ -49,12 +51,13 @@ export const quiz = createSlice({
       console.log(answerIndex)
       console.log(question.correctAnswerIndex)
       
-      document.getElementById(`${questionId}${answerIndex}`).classList.remove("green")
-
+      // document.getElementById(`${questionId}${answerIndex}`).classList.remove("green")
+      
 
       if (question.correctAnswerIndex === answerIndex) {
         console.log("Correct answer!")
-        document.getElementById(`${questionId}${answerIndex}`).className = "green"
+        // document.getElementById(`${questionId}${answerIndex}`).className = "green"
+        
       } else {
         console.log("Wrong answer :(")
       }

@@ -5,3 +5,6 @@ export const NextButton = styled.button`
 `
 export const AnswerButton = styled.button`
 `
+
+export const RestartButton = styled.button`
+`
