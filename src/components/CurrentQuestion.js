@@ -4,7 +4,6 @@ import { quiz } from 'reducers/quiz'
 import { NextButton, AnswerButton, RestartButton } from './Button'
 import { Container, Header, StartButton, Image } from './Styling'
 
-
 export const CurrentQuestion = () => {
   const answers = useSelector((state) => state.quiz.answers)
   const correctAnswers = answers.filter(answer => answer.isCorrect)
@@ -60,7 +59,10 @@ export const CurrentQuestion = () => {
           <p>{console.log(correctAnswers)}</p>
           <p>You had {correctAnswers.length}/{questions.length} correct answers.</p>
 
-          <RestartButton>
+          <RestartButton 
+            onClick={() => 
+              dispatch(quiz.actions.restart())}
+          >
             Restart quiz
           </RestartButton>
         </main>
