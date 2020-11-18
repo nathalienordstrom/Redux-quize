@@ -23,7 +23,7 @@ export const QuestionContainer = styled.section`
   position: relative;
 `
 
-export const HomeContainer = styled. section`
+export const HomeContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
