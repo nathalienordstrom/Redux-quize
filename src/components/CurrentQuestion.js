@@ -30,24 +30,20 @@ export const CurrentQuestion = () => {
           <AnswerButton 
             id={`${question.id}${index}`}
             key={index}
-            onClick={(() =>
+            onClick={(() => {
+              
               dispatch(quiz.actions.submitAnswer(
                 {
                   questionId: question.id,
                   answerIndex: index
                 }
-              )))}>{option}
+              ))
+              dispatch(quiz.actions.goToNextQuestion())
+              
+      })}>{option}
           </AnswerButton>
       )}
       
-        <NextButton
-          className='correct-answer'
-          onClick={(() => {
-            dispatch(quiz.actions.goToNextQuestion())
-            // document.getElementById(`${question.id}`).classList.remove("green")
-          })}
-        >Next
-        </NextButton>
         </>
       )}
 
