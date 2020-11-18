@@ -2,24 +2,28 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { quiz } from 'reducers/quiz'
 import { NextButton, AnswerButton, RestartButton } from './Button'
+import { Container, Header, StartButton, Image } from './Styling'
 
-
-// 
-// 
 
 export const CurrentQuestion = () => {
   const answers = useSelector((state) => state.quiz.answers)
+  const correctAnswers = answers.filter(answer => answer.isCorrect)
+
   const quizOver = useSelector((state) => state.quiz.quizOver)
+  const quizStarted = useSelector((state) => state.quiz.quizStarted)
   const dispatch = useDispatch()
   const question = useSelector((state) => state.quiz.questions[state.quiz.currentQuestionIndex])
+  const questions = useSelector((state) => state.quiz.questions)
 
   if (!question) {
     return <h1>Oh no! I could not find the current question!</h1>
   }
 
   return (
-    <div>
-      { !quizOver && (
+    
+    <Container>
+
+      { !quizOver && quizStarted && (
       <>
       <h1>Question:{question.id}/5 </h1>
       <h2>{question.questionText}</h2>
@@ -53,18 +57,17 @@ export const CurrentQuestion = () => {
           <h1>Summary</h1>
 
           <p>{console.log(answers)}</p>
-          {
+          <p>{console.log(correctAnswers)}</p>
+          <p>You had {correctAnswers.length}/{questions.length} correct answers.</p>
 
-          }
-
-          <RestartButton >
+          <RestartButton>
             Restart quiz
           </RestartButton>
         </main>
       )}
       
 
-    </div>
+    </Container>
   )
 }
 // To do:

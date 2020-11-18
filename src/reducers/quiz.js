@@ -2,17 +2,38 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // Change these to your own questions!
 const questions = [
-  { 
-    id: 1, 
-    questionText: 'Who set the Olympic record for the 100m dash in 2012?', 
-    options: ['Usain Bolt', 'Justin Gatlin', 'Tyson Gay', 'Asafa Powell'], 
-    correctAnswerIndex: 0 
+  {
+    id: 1,
+    questionText: "Which company was established on April 1st, 1976 by Steve Jobs, Steve Wozniak and Ronald Wayne?",
+    options: ["Apple",
+    "Microsoft",
+    "Atari",
+    "Commodore"],
+    correctAnswerIndex: 0
   },
-  { 
-    id: 2, 
-    questionText: 'When was Michael Phelps last named male World Swimmer of the Year?', 
-    options: ['2012', '2014', '2016', '2018'], 
-    correctAnswerIndex: 2 
+  {
+    id: 2,
+    questionText: "What amount of bits commonly equals one byte?",
+    options: ["1", "2", "8", "64"],
+    correctAnswerIndex: 2
+  },
+  {
+    id: 3,
+    questionText: "Which computer hardware device provides an interface for all other connected devices to communicate?",
+    options: ["Central Processing Unit", "Hard Disk Drive", "Random Access Memory", "Motherboard"],
+    correctAnswerIndex: 3
+  },
+  {
+    id: 4,
+    questionText: "What does the Prt Sc button do?",
+    options: ["Closes all windows", "Nothing", "Captures what's on the screen and copies it to your clipboard", "Saves a .png file of what's on the screen in your screenshots folder in photos"],
+    correctAnswerIndex: 2
+  },
+  {
+    id: 5,
+    questionText: "What is the code name for the mobile operating system Android 7.0?",
+    options: ["Ice Cream Sandwich", "Nougat", "Jelly Bean", "Marshmallow"],
+    correctAnswerIndex: 1
   }
 ]
 
@@ -21,7 +42,8 @@ const initialState = {
   // answers is the array of the answers the user has chosen.
   answers: [],
   currentQuestionIndex: 0,
-  quizOver: false
+  quizOver: false,
+  quizStarted: false
 }
 
 
@@ -52,7 +74,7 @@ export const quiz = createSlice({
       console.log(question.correctAnswerIndex)
       
       // document.getElementById(`${questionId}${answerIndex}`).classList.remove("green")
-      
+
 
       if (question.correctAnswerIndex === answerIndex) {
         console.log("Correct answer!")
@@ -105,6 +127,11 @@ export const quiz = createSlice({
      */
     restart: () => {
       return initialState
+    },
+
+    startQuiz: (state) => {
+      // Sätt quizStarted till true
+      state.quizStarted = true
     }
 
   }
