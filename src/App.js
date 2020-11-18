@@ -5,6 +5,7 @@ import { quiz } from 'reducers/quiz'
 
 import { CurrentQuestion } from 'components/CurrentQuestion'
 import { LandingPage } from 'components/LandingPage'
+import { MainContainer } from 'components/Styling'
 
 const reducer = combineReducers({
   quiz: quiz.reducer
@@ -15,11 +16,10 @@ const store = configureStore({ reducer })
 export const App = () => {
   return (
     <Provider store={store}>
-
-      <LandingPage />
-      <CurrentQuestion />
-
-
+      <MainContainer>
+        <LandingPage />
+        <CurrentQuestion />
+      </MainContainer>
     </Provider>
   )
 }

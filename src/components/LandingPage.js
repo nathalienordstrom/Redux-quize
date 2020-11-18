@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Header, StartButton, Image } from './Styling'
+import { HomeContainer, Header, Button } from './Styling'
 import { useDispatch, useSelector } from 'react-redux'
 import { quiz } from 'reducers/quiz'
 
@@ -14,15 +14,15 @@ export const LandingPage = () => {
 
   return (
     
-    <Container>
+  <HomeContainer>
       { !quizStarted && (
       <>
-        <Header>Text text text - take quiz!</Header>
-        <StartButton onClick={() => dispatch(quiz.actions.startQuiz())}>Start quiz</StartButton>
+        <Header>Computer Science Quiz</Header>
+        <Button onClick={() => dispatch(quiz.actions.startQuiz())}>Start quiz</Button>
       </>
       )}
  
-    </Container>
+    </HomeContainer>
 
     )
 }

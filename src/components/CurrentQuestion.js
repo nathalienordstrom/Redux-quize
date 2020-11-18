@@ -1,8 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { quiz } from 'reducers/quiz'
-import { NextButton, AnswerButton, RestartButton } from './Button'
-import { Container, Header, StartButton, Image } from './Styling'
+import { Button, QuestionContainer, Header } from './Styling'
 
 export const CurrentQuestion = () => {
   const answers = useSelector((state) => state.quiz.answers)
@@ -20,7 +19,7 @@ export const CurrentQuestion = () => {
 
   return (
     
-    <Container>
+    <QuestionContainer>
 
       { !quizOver && quizStarted && (
       <>
@@ -30,7 +29,7 @@ export const CurrentQuestion = () => {
       {/* Use map to display the answers. */}
       { question.options.map(
         (option, index) =>
-          <AnswerButton 
+          <Button 
             id={`${question.id}${index}`}
             key={index}
             onClick={(() => {
@@ -44,7 +43,7 @@ export const CurrentQuestion = () => {
               dispatch(quiz.actions.goToNextQuestion())
               
       })}>{option}
-          </AnswerButton>
+          </Button>
       )}
       
         </>
@@ -52,24 +51,21 @@ export const CurrentQuestion = () => {
 
       {/* Here we show the summary */}
       { quizOver && (
-        <main>
-          <h1>Summary</h1>
+        <>
+          <Header>Summary</Header>
+          <h2>You had {correctAnswers.length}/{questions.length} correct answers.</h2>
 
-          <p>{console.log(answers)}</p>
-          <p>{console.log(correctAnswers)}</p>
-          <p>You had {correctAnswers.length}/{questions.length} correct answers.</p>
-
-          <RestartButton 
+          <Button 
             onClick={() => 
               dispatch(quiz.actions.restart())}
           >
             Restart quiz
-          </RestartButton>
-        </main>
+          </Button>
+        </>
       )}
       
 
-    </Container>
+    </QuestionContainer>
   )
 }
 // To do:
